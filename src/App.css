@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+#app-container {
+  aspect-ratio: 16 / 9;
+  max-width: 480px;
+  margin: auto;
+  position: 'relative';
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f2f3f5;
+}
+
+:root {
+  --page-max-width: 480px;
+  --image-width: 130px;
+  --margin-side: 20px;
+}
