@@ -38,7 +38,7 @@ const ProductDetailScreen = observer(() => {
           }
         }
         SearchStore?.setIsLoading(false)
-        //backendApi.logEvent('catalog_click', { catalogNumber: catalogNumber });
+        backendApi.logEvent('catalog_click', { catalogNumber: catalogNumber })
       } catch (err) {
         console.log(err)
       }
@@ -282,11 +282,11 @@ const ProductDetailScreen = observer(() => {
                   }}
                   onClick={() => {
                     window.open(mall?.mallUrl, '_blank')
-                    // logEvent('mallSelect', {
-                    //   productName: productDetailData?.title,
-                    //   mallName: mall?.sellerName,
-                    //   url: mall?.mallUrl,
-                    // })
+                    backendApi?.logEvent('mallSelect', {
+                      productName: productDetailData?.title,
+                      mallName: mall?.sellerName,
+                      url: mall?.mallUrl,
+                    })
                   }}
                 >
                   <div>
@@ -353,11 +353,11 @@ const ProductDetailScreen = observer(() => {
               <button
                 onClick={() => {
                   window.open(productDetailData?.lowestPriceUrl, '_blank')
-                  //   backendApi.logEvent('mallSelect', {
-                  //     productName: productDetailData?.title,
-                  //     mallName: productDetailData?.mallList[0]?.sellerName,
-                  //     url: productDetailData?.mallList[0]?.mallUrl,
-                  //   })
+                  backendApi?.logEvent('mallSelect', {
+                    productName: productDetailData?.title,
+                    mallName: productDetailData?.mallList[0]?.sellerName,
+                    url: productDetailData?.mallList[0]?.mallUrl,
+                  })
                 }}
                 style={{
                   width: '100%',

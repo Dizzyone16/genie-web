@@ -26,13 +26,11 @@ function App() {
             localStorage.setItem('@webToken', result?.token)
             // await UserStore?.setUserId(result?.userId)
 
-            // backendApi.logEvent('login')
+            backendApi.logEvent('login')
           }
         } else {
-          // AuthStore?.setToken(result?.token)
-          console.log()
-
           console.log('Token already exists in localStorage')
+          backendApi.logEvent('login')
         }
       } catch (err) {
         console.err(err)

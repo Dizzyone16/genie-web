@@ -1,9 +1,9 @@
-// const backendUrl = 'https://genious.co.kr'
-
 import fetchWrapper from './fetchWrapper'
 
+const backendUrl = 'https://genious.co.kr'
+
 // const backendUrl = 'http://127.0.0.1:3001'
-const backendUrl = 'http://localhost:3001'
+// const backendUrl = 'http://localhost:3001'
 
 class BackendApi {
   async issueWebToken() {
@@ -110,10 +110,15 @@ class BackendApi {
       return
     }
     try {
+      const eventDataWithSource = {
+        ...eventData,
+        source: 'web',
+      }
+
       const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ eventType, eventData }),
+        body: JSON.stringify({ eventType, eventData: eventDataWithSource }),
       }
       const url = `${backendUrl}/data/log-event`
       await fetchWrapper(url, options)

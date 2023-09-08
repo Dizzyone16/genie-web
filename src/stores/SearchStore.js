@@ -44,7 +44,7 @@ class SearchStore {
       }
     }
     this.setIsLoading(false)
-    // backendApi.logEvent('searchOnWeb', { query: query })
+    backendApi?.logEvent('search', { query: query })
   }
 }
 
