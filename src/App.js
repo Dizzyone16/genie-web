@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen.js'
 import './App.css'
 import SearchScreen from './screens/SearchScreen.js'
@@ -8,6 +8,8 @@ import AuthStore from './stores/AuthStore.js'
 import ProductDetailScreen from './screens/ProductDetailScreen.js'
 
 function App() {
+  const { pathname } = useLocation()
+
   useEffect(() => {
     const handleInitialToken = async () => {
       try {
@@ -35,6 +37,10 @@ function App() {
 
     handleInitialToken()
   }, [])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   return (
     <div id='app-container'>

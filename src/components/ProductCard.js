@@ -7,14 +7,17 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate()
 
   // Define the constants here
-  const PAGE_MAX_WIDTH = 480
+  const maxWidth = 480
+  const screenWidth =
+    window?.innerWidth >= maxWidth ? maxWidth : window?.innerWidth
+
   const IMAGE_WIDTH = 130
-  const MARGIN_SIDE = 20
+  const MARGIN_SIDE = 25
   const PADDING_BETWEEN = 20
 
   // Calculate max-width dynamically
   const itemTitleMaxWidth =
-    PAGE_MAX_WIDTH - IMAGE_WIDTH - PADDING_BETWEEN - MARGIN_SIDE * 2
+    screenWidth - IMAGE_WIDTH - PADDING_BETWEEN - MARGIN_SIDE * 2
 
   const handleNavigation = () => {
     navigate(`/catalog/${product?.catalogNumber}`)
@@ -37,17 +40,18 @@ const ProductCard = ({ product }) => {
           <div
             style={{
               display: 'flex',
+              alignItems: 'center',
               justifyContent: 'center',
-              width: '130px',
-              height: '130px',
+              width: 130,
+              height: 130,
             }}
           >
             <img
               src={decodeURIComponent(product?.imageUrl)}
               alt={product?.title}
               style={{
-                width: '100%',
-                height: '100%',
+                width: 130,
+                height: 130,
                 border: '1px solid #D9D9D9',
                 borderRadius: '16px',
               }}
@@ -91,7 +95,11 @@ const ProductCard = ({ product }) => {
               style={{
                 fontSize: '16px',
                 color: 'black',
-                maxWidth: itemTitleMaxWidth,
+                width: itemTitleMaxWidth,
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
               }}
             >
               {product?.title}

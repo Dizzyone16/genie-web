@@ -78,7 +78,8 @@ const ProductDetailScreen = observer(() => {
         justifyContent: 'center',
         backgroundColor: 'white',
         minHeight: '100vh',
-        marginTop: 55,
+        paddingTop: 55,
+        paddingBottom: 64,
       }}
     >
       <Header />
@@ -320,12 +321,12 @@ const ProductDetailScreen = observer(() => {
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        marginLeft: '4px',
+                        marginLeft: 8,
                       }}
                     >
                       <img
                         src={ArrowForward}
-                        style={{ height: '12px', width: '8px' }}
+                        style={{ height: 12, width: 8 }}
                         alt='Arrow Forward Icon'
                       />
                     </div>
@@ -337,17 +338,17 @@ const ProductDetailScreen = observer(() => {
 
           <div
             style={{
-              width: screenWidth,
+              width: screenWidth - 40,
               position: 'fixed',
               bottom: '0',
               paddingLeft: 20,
               paddingRight: 20,
-              height: '58px',
+              height: 64,
               backgroundColor: 'white',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              zIndex: 1000,
+              zIndex: 999,
             }}
           >
             <div style={{ flex: 1 }}>

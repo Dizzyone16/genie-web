@@ -27,6 +27,9 @@ const ListItem = ({ text }) => (
 )
 
 const HomeScreen = () => {
+  const maxWidth = 480
+  const screenWidth =
+    window?.innerWidth >= maxWidth ? maxWidth : window?.innerWidth
   const [searchQuery, setSearchQuery] = useState('')
 
   const genie = require('../images/Genie.png')
@@ -69,7 +72,7 @@ const HomeScreen = () => {
           <img src={genie} alt='Genie' style={{ width: 120, height: 40 }} />
         </div>
 
-        <div className='search-container'>
+        <div className='search-container' style={{ width: screenWidth - 50 }}>
           <img
             src={search}
             alt='Search'
@@ -78,7 +81,7 @@ const HomeScreen = () => {
           <input
             className='search-input'
             type='search'
-            autocomplete='search'
+            autoComplete='search'
             placeholder='상품을 검색해보세요'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

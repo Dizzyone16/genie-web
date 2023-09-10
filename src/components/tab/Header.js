@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // images
@@ -25,6 +25,7 @@ const Header = ({ headerType, title, query, handleSearch, setQuery }) => {
               backgroundColor: '#F2F3F5',
               justifyContents: 'center',
               width: screenWidth - 40 - 43,
+              height: 44,
             }}
           >
             {/* Replace this with your Search image */}
@@ -34,7 +35,8 @@ const Header = ({ headerType, title, query, handleSearch, setQuery }) => {
               alt='search'
             />
             <input
-              type='text'
+              type='search'
+              autoComplete='search'
               style={{
                 flex: 1,
                 fontSize: '16px',
@@ -83,7 +85,6 @@ const Header = ({ headerType, title, query, handleSearch, setQuery }) => {
     >
       <button
         style={{
-          padding: 10,
           backgroundColor: 'white',
           border: 'none',
         }}
