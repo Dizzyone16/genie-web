@@ -21,7 +21,9 @@ const Divider = () => (
 )
 
 const ProductDetailScreen = observer(() => {
-  const screenWidth = window.innerWidth
+  const maxWidth = 480
+  const screenWidth =
+    window?.innerWidth >= maxWidth ? maxWidth : window?.innerWidth
   const [productDetailData, setProductDetailData] = useState({})
 
   const { catalogNumber } = useParams()
@@ -76,6 +78,7 @@ const ProductDetailScreen = observer(() => {
         justifyContent: 'center',
         backgroundColor: 'white',
         minHeight: '100vh',
+        marginTop: 55,
       }}
     >
       <Header />
@@ -88,7 +91,7 @@ const ProductDetailScreen = observer(() => {
           <div style={{ textAlign: 'center' }}>
             <img
               src={decodeURIComponent(productDetailData?.imageUrl)}
-              style={{ maxWidth: 480 }}
+              style={{ width: screenWidth, height: screenWidth }}
               alt='Product'
             />
           </div>
@@ -185,9 +188,7 @@ const ProductDetailScreen = observer(() => {
                 <div
                   style={{
                     display: 'flex',
-                    overflowX: 'hidden',
-                    scrollbarWidth: 'none',
-                    msOverflowStyle: 'none',
+                    overflowX: 'auto',
                   }}
                 >
                   {productDetailData?.options?.map((option, index) => {
@@ -336,7 +337,7 @@ const ProductDetailScreen = observer(() => {
 
           <div
             style={{
-              width: screenWidth > 480 - 20 - 20 ? 480 - 20 - 20 : screenWidth,
+              width: screenWidth,
               position: 'fixed',
               bottom: '0',
               paddingLeft: 20,
@@ -360,7 +361,7 @@ const ProductDetailScreen = observer(() => {
                   })
                 }}
                 style={{
-                  width: '100%',
+                  width: screenWidth - 40,
                   height: '46px',
                   display: 'flex',
                   alignItems: 'center',

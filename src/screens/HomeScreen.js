@@ -12,7 +12,7 @@ const ListItem = ({ text }) => (
       fontWeight: 600,
       borderRadius: 24,
       borderColor: '#f2f3f5',
-      borderWidth: 1,
+      borderWidth: 1.5,
       borderStyle: 'solid',
       paddingTop: 8,
       paddingBottom: 8,
@@ -58,12 +58,13 @@ const HomeScreen = () => {
           display: 'flex',
           flexDirection: 'column',
           padding: 25,
-          marginTop: 100,
+          marginTop: 60,
         }}
       >
         <div className='text-container'>
           <div>
-            <p>찾고자 하는 상품, 클릭 두 번만에 찾아보세요</p>
+            <p>찾으시는 상품,</p>
+            <p>클릭 두 번만에 찾아보세요</p>
           </div>
           <img src={genie} alt='Genie' style={{ width: 120, height: 40 }} />
         </div>
@@ -76,6 +77,8 @@ const HomeScreen = () => {
           />
           <input
             className='search-input'
+            type='search'
+            autocomplete='search'
             placeholder='상품을 검색해보세요'
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

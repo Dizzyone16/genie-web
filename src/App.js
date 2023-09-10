@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen.js'
-
 import './App.css'
 import SearchScreen from './screens/SearchScreen.js'
 import backendApi from './utils/backendApi.js'
@@ -10,9 +9,6 @@ import ProductDetailScreen from './screens/ProductDetailScreen.js'
 
 function App() {
   useEffect(() => {
-    // 1. localStorage에 token이 있는지 확인
-    // 2. 있는 경우 - pass, 없는 경우 - backend에서 jwt 토큰 발급
-    // 없는 경우
     const handleInitialToken = async () => {
       try {
         const existingToken = await AuthStore?.loadToken()

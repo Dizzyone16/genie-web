@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // images
@@ -6,7 +6,9 @@ import BackImage from '../../images/Back.png'
 import SearchImage from '../../images/Search.png'
 
 const Header = ({ headerType, title, query, handleSearch, setQuery }) => {
-  const screenWidth = window.innerWidth
+  const maxWidth = 480
+  const screenWidth =
+    window?.innerWidth >= maxWidth ? maxWidth : window?.innerWidth
   const navigate = useNavigate()
 
   const renderHeaderContent = () => {
@@ -22,6 +24,7 @@ const Header = ({ headerType, title, query, handleSearch, setQuery }) => {
               marginLeft: 12,
               backgroundColor: '#F2F3F5',
               justifyContents: 'center',
+              width: screenWidth - 40 - 43,
             }}
           >
             {/* Replace this with your Search image */}
@@ -66,7 +69,7 @@ const Header = ({ headerType, title, query, handleSearch, setQuery }) => {
       style={{
         position: 'fixed',
         top: 0,
-        width: screenWidth > 480 - 20 - 20 ? 480 - 20 - 20 : screenWidth,
+        width: screenWidth - 40,
         flex: 1,
         backgroundColor: 'white',
         display: 'flex',

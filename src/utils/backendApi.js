@@ -97,7 +97,7 @@ class BackendApi {
       const url = `${backendUrl}/user/catalog/option`
       const res = await fetchWrapper(url, options)
       const data = await res.json()
-      console.log(`catalog data : ${JSON.stringify(data)}`)
+      console.log(`catalog option data : ${JSON.stringify(data)}`)
       return data
     } catch (err) {
       console.log(err)

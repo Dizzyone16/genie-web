@@ -1,7 +1,7 @@
 .text-container {
   display: grid;
   align-items: center;
-  padding-bottom: 24px;
+  padding-bottom: 30px;
 }
 
 .text-container p {
@@ -11,7 +11,11 @@
   letter-spacing: -0.24%;
   color: #000000;
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.text-container p:first-child {
+  margin-bottom: 4px;
 }
 
 .search-container {

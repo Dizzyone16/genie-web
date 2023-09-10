@@ -17,7 +17,13 @@ const SearchScreen = observer(() => {
   }
 
   return (
-    <div style={{ backgroundColor: 'white', minHeight: '100vh' }}>
+    <div
+      style={{
+        backgroundColor: 'white',
+        minHeight: '100vh',
+        width: window?.innerWidth,
+      }}
+    >
       <Header
         headerType={'search'}
         query={query}
