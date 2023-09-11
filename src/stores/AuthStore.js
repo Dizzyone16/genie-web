@@ -2,10 +2,14 @@ import { makeObservable, observable, action } from 'mobx'
 
 class AuthStore {
   token = ''
+  isTokenInitialized = false
+
   constructor() {
     makeObservable(this, {
       token: observable,
+      isTokenInitialized: observable,
       setToken: action,
+      setIsTokenInitialized: action,
     })
   }
 
@@ -13,16 +17,21 @@ class AuthStore {
     this.token = token
   }
 
+  setIsTokenInitialized(isTokenInitialized) {
+    this.isTokenInitialized = isTokenInitialized
+  }
+
   async loadToken() {
     if (this?.token === '') {
       const userToken = await localStorage.getItem('@webToken')
       if (userToken) {
-        this.setToken(userToken)
+        this?.setToken(userToken)
 
         return userToken
       }
     }
-    return this.token
+    this?.setIsTokenInitialized(true)
+    return this?.token
   }
 }
 

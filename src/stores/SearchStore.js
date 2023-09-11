@@ -1,5 +1,6 @@
 import { makeObservable, observable, action } from 'mobx'
 import backendApi from '../utils/backendApi'
+import AuthStore from './AuthStore'
 
 class SearchStore {
   isLoading = false
@@ -34,6 +35,11 @@ class SearchStore {
     if (query.trim() === '') {
       return
     }
+
+    if (!AuthStore?.isTokenInitialized) {
+      await AuthStore?.loadToken()
+    }
+
     this.setIsSearched(true)
     this.setIsLoading(true)
     this.setSearchResult([])

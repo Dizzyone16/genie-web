@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import backendApi from '../utils/backendApi'
 import RatingInfo from '../components/RatingInfo'
 import commaNumber from 'comma-number'
@@ -11,6 +11,8 @@ import SearchStore from '../stores/SearchStore'
 import Header from '../components/tab/Header'
 import LoadingIndicator from '../components/LoadingIndicator'
 import { observer } from 'mobx-react'
+import AuthStore from '../stores/AuthStore'
+import queryString from 'query-string'
 
 // image
 const ArrowForward = require('../images/ArrowForward.png')
@@ -21,32 +23,44 @@ const Divider = () => (
 )
 
 const ProductDetailScreen = observer(() => {
+  const location = useLocation()
   const maxWidth = 480
   const screenWidth =
     window?.innerWidth >= maxWidth ? maxWidth : window?.innerWidth
+  const [catalogNumber, setCatalogNumber] = useState('')
   const [productDetailData, setProductDetailData] = useState({})
 
-  const { catalogNumber } = useParams()
-
   useEffect(() => {
-    async function fetchData() {
+    const initializeData = async () => {
       try {
         SearchStore?.setIsLoading(true)
-        const result = await backendApi?.getProductDetailData(catalogNumber)
 
-        if (result?.status === 200) {
-          if (result?.data) {
-            setProductDetailData(result?.data)
-          }
+        if (!AuthStore?.isTokenInitialized) {
+          await AuthStore?.loadToken()
         }
-        SearchStore?.setIsLoading(false)
-        backendApi.logEvent('catalog_click', { catalogNumber: catalogNumber })
+
+        if (location.search) {
+          const parsed = queryString.parse(location.search)
+          const productNumber = parsed?.productNumber
+          console.log('productNumber', productNumber)
+          const result = await backendApi?.getProductDetailData(productNumber)
+
+          if (result?.status === 200) {
+            if (result?.data) {
+              setProductDetailData(result?.data)
+            }
+          }
+          setCatalogNumber(productNumber)
+
+          SearchStore?.setIsLoading(false)
+          backendApi.logEvent('catalog_click', { catalogNumber: productNumber })
+        }
       } catch (err) {
         console.log(err)
       }
     }
-    fetchData()
-  }, [])
+    initializeData()
+  }, [location.search])
 
   const handleOptionClick = (option) => async () => {
     try {

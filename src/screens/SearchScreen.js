@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
+import queryString from 'query-string'
 
 // store
 import SearchStore from '../stores/SearchStore'
+import { useLocation, useNavigate, useParams } from 'react-router'
 
 // component
 import LoadingIndicator from '../components/LoadingIndicator'
@@ -10,11 +12,35 @@ import Header from '../components/tab/Header'
 import ProductCard from '../components/ProductCard'
 
 const SearchScreen = observer(() => {
-  const [query, setQuery] = useState('')
+  const { queryParam } = useParams()
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [query, setQuery] = useState(queryParam ? queryParam : '')
 
   const handleSearch = async (query) => {
+    setQuery(query)
     SearchStore?.handleSearch(query)
   }
+
+  useEffect(() => {
+    const initializeSearch = async () => {
+      if (location.search) {
+        const parsed = queryString.parse(location.search)
+        const query = parsed?.query
+
+        if (query) {
+          SearchStore.handleSearch(query)
+        }
+      }
+    }
+    initializeSearch()
+  }, [location.search])
+
+  useEffect(() => {
+    if (query) {
+      navigate(`/search?query=${query}`)
+    }
+  }, [query])
 
   return (
     <div

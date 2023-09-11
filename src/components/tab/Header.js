@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 // images
 import BackImage from '../../images/Back.png'
 import SearchImage from '../../images/Search.png'
 
-const Header = ({ headerType, title, query, handleSearch, setQuery }) => {
+const Header = ({ headerType, title, query, handleSearch }) => {
   const maxWidth = 480
   const screenWidth =
     window?.innerWidth >= maxWidth ? maxWidth : window?.innerWidth
   const navigate = useNavigate()
+
+  const [text, setText] = useState(query ? query : '')
 
   const renderHeaderContent = () => {
     switch (headerType) {
@@ -49,13 +51,13 @@ const Header = ({ headerType, title, query, handleSearch, setQuery }) => {
                 outline: 'none',
               }}
               placeholder='상품을 검색해보세요'
-              value={query}
+              value={text}
               onChange={(e) => {
-                setQuery(e.target.value)
+                setText(e.target.value)
               }}
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
-                  handleSearch(query)
+                  handleSearch(text)
                 }
               }}
             />

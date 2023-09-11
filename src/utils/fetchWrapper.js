@@ -2,6 +2,7 @@ import AuthStore from '../stores/AuthStore'
 
 const updateHeader = (options) => {
   const updatedOptions = { ...options }
+
   if (AuthStore?.token !== '') {
     updatedOptions.headers = {
       ...updatedOptions.headers,

@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
     screenWidth - IMAGE_WIDTH - PADDING_BETWEEN - MARGIN_SIDE * 2
 
   const handleNavigation = () => {
-    navigate(`/catalog/${product?.catalogNumber}`)
+    navigate(`/catalog?productNumber=${product?.catalogNumber}`)
   }
 
   return (

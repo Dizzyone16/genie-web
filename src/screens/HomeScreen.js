@@ -39,8 +39,7 @@ const HomeScreen = () => {
 
   const handleKeyPress = async (e) => {
     if (e.key === 'Enter') {
-      SearchStore?.handleSearch(searchQuery)
-      navigate('/search')
+      navigate(`/search?query=${searchQuery}`)
       console.log(`Navigate or filter products based on: ${searchQuery}`)
     }
   }

@@ -10,6 +10,8 @@ import ProductDetailScreen from './screens/ProductDetailScreen.js'
 function App() {
   const { pathname } = useLocation()
 
+  // 유저의 이탈 및 백그라운드도 추적할 수 있으면 좋겠다
+
   useEffect(() => {
     const handleInitialToken = async () => {
       try {
@@ -51,10 +53,7 @@ function App() {
         <Route path='/search' element={<SearchScreen />} />
       </Routes>
       <Routes>
-        <Route
-          path='/catalog/:catalogNumber'
-          element={<ProductDetailScreen />}
-        />
+        <Route path='/catalog' element={<ProductDetailScreen />} />
       </Routes>
     </div>
   )
