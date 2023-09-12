@@ -1,11 +1,18 @@
 import React, { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import HomeScreen from './screens/HomeScreen.js'
+import { Helmet } from 'react-helmet'
 import './App.css'
-import SearchScreen from './screens/SearchScreen.js'
+
+// utils
 import backendApi from './utils/backendApi.js'
+
+// store
 import AuthStore from './stores/AuthStore.js'
+
+// components
 import ProductDetailScreen from './screens/ProductDetailScreen.js'
+import SearchScreen from './screens/SearchScreen.js'
+import HomeScreen from './screens/HomeScreen.js'
 
 function App() {
   const { pathname } = useLocation()
@@ -46,6 +53,12 @@ function App() {
 
   return (
     <div id='app-container'>
+      {/* <Helmet>
+        <meta
+          name='naver-site-verification'
+          content='8796c93f60f744dcffe57b825a1949fd2b9c0017'
+        />
+      </Helmet> */}
       <Routes>
         <Route path='/' element={<HomeScreen />} />
       </Routes>

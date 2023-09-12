@@ -55,3 +55,12 @@ body {
   --image-width: 130px;
   --margin-side: 20px;
 }
+
+/* iOS에서 기본 돋보기 아이콘 제거 */
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}

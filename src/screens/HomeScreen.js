@@ -1,41 +1,52 @@
 import React, { useState } from 'react'
 import './HomeScreen.css'
 import LoadingIndicator from '../components/LoadingIndicator'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import SearchStore from '../stores/SearchStore'
 
+const maxWidth = 480
+
 const ListItem = ({ text }) => (
-  <li
-    style={{
-      fontSize: 12,
-      listStyleType: 'none',
-      fontWeight: 600,
-      borderRadius: 24,
-      borderColor: '#f2f3f5',
-      borderWidth: 1.5,
-      borderStyle: 'solid',
-      paddingTop: 8,
-      paddingBottom: 8,
-      paddingLeft: 16,
-      paddingRight: 16,
-      marginRight: 8,
-      marginBottom: 8,
-    }}
-  >
-    {text}
-  </li>
+  <Link to={`/search?query=${text}`} style={{ textDecoration: 'none' }}>
+    <li
+      style={{
+        fontSize: 12,
+        listStyleType: 'none',
+        fontWeight: 600,
+        borderRadius: 24,
+        borderColor: '#f2f3f5',
+        borderWidth: 1.5,
+        borderStyle: 'solid',
+        paddingTop: 8,
+        paddingBottom: 8,
+        paddingLeft: 16,
+        paddingRight: 16,
+        marginRight: 8,
+        marginBottom: 8,
+        color: 'black',
+      }}
+    >
+      {text}
+    </li>
+  </Link>
+)
+
+const HiddenH1 = () => (
+  <h1 style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
+    클릭 두 번이면 끝나는 간편한 최저가검색, 지니
+  </h1>
 )
 
 const HomeScreen = () => {
-  const maxWidth = 480
   const screenWidth =
     window?.innerWidth >= maxWidth ? maxWidth : window?.innerWidth
+
+  const navigate = useNavigate()
+
   const [searchQuery, setSearchQuery] = useState('')
 
   const genie = require('../images/Genie.png')
   const search = require('../images/Search.png')
-
-  const navigate = useNavigate()
 
   const handleKeyPress = async (e) => {
     if (e.key === 'Enter') {
@@ -54,6 +65,7 @@ const HomeScreen = () => {
         justifyContent: 'flex-start',
       }}
     >
+      <HiddenH1 />
       <div
         style={{
           flex: 1,
