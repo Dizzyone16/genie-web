@@ -13,6 +13,7 @@ import AuthStore from './stores/AuthStore.js'
 import ProductDetailScreen from './screens/ProductDetailScreen.js'
 import SearchScreen from './screens/SearchScreen.js'
 import HomeScreen from './screens/HomeScreen.js'
+import InterviewRequestModal from './components/modal/InterviewRequestModal'
 
 function App() {
   const { pathname } = useLocation()
@@ -68,6 +69,7 @@ function App() {
       <Routes>
         <Route path='/catalog' element={<ProductDetailScreen />} />
       </Routes>
+      <InterviewRequestModal />
     </div>
   )
 }

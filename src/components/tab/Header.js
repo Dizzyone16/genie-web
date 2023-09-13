@@ -81,7 +81,7 @@ const Header = ({ headerType, title, query, handleSearch }) => {
         paddingLeft: 20,
         paddingRight: 20,
         height: 55,
-        zIndex: 999,
+        zIndex: 10,
         alignItems: 'center',
       }}
     >

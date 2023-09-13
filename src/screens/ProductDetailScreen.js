@@ -13,6 +13,7 @@ import LoadingIndicator from '../components/LoadingIndicator'
 import { observer } from 'mobx-react'
 import AuthStore from '../stores/AuthStore'
 import queryString from 'query-string'
+import UserStore from '../stores/UserStore'
 
 // image
 const ArrowForward = require('../images/ArrowForward.png')
@@ -21,6 +22,12 @@ const NaverShopping = require('../images/NaverIcon.png')
 const Divider = () => (
   <div style={{ height: '18px', backgroundColor: '#F5F5F5' }} />
 )
+
+const nudgeInterview = () => {
+  setTimeout(() => {
+    UserStore?.setModalOpen(true)
+  }, 3000)
+}
 
 const ProductDetailScreen = observer(() => {
   const location = useLocation()
@@ -303,6 +310,7 @@ const ProductDetailScreen = observer(() => {
                       mallName: mall?.sellerName,
                       url: mall?.mallUrl,
                     })
+                    nudgeInterview()
                   }}
                 >
                   <div>
@@ -362,7 +370,7 @@ const ProductDetailScreen = observer(() => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              zIndex: 999,
+              zIndex: 10,
             }}
           >
             <div style={{ flex: 1 }}>
@@ -374,6 +382,7 @@ const ProductDetailScreen = observer(() => {
                     mallName: productDetailData?.mallList[0]?.sellerName,
                     url: productDetailData?.mallList[0]?.mallUrl,
                   })
+                  nudgeInterview()
                 }}
                 style={{
                   width: screenWidth - 40,
